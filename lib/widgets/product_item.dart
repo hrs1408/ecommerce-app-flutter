@@ -39,7 +39,7 @@ class ProductItem extends StatelessWidget {
               height: 10,
             ),
             const Text(
-              'Keripik Pisang',
+              'Bánh chuối',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
@@ -49,7 +49,7 @@ class ProductItem extends StatelessWidget {
               height: 5,
             ),
             const Text(
-              '\$ 2.00',
+              '20.000 VNĐ',
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
@@ -65,7 +65,7 @@ class ProductItem extends StatelessWidget {
                 const Text('4.9'),
                 const Spacer(),
                 const Text(
-                  '86 Reviews',
+                  '86 Đánh giá',
                   style: TextStyle(
                     fontSize: 12,
                     color: Colors.grey,

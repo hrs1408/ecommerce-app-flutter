@@ -68,7 +68,7 @@ class CarouselHome extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Gratis Ongkir Selama PPKM!',
+                              'Giao hàng miễn phí trong 2KM!',
                               style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.white,
@@ -79,7 +79,7 @@ class CarouselHome extends StatelessWidget {
                               height: 10,
                             ),
                             Text(
-                              'Periode Mei - Agustus 2021',
+                              'Giai đoạn tháng 5 - tháng 8 năm 2023',
                               style: TextStyle(
                                 fontSize: 10,
                                 color: Colors.white,

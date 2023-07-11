@@ -1,5 +1,9 @@
+import 'package:ecommerces/screens/forgot_pasword/enter_new_password.dart';
+import 'package:ecommerces/screens/forgot_pasword/enter_otp_code.dart';
+import 'package:ecommerces/screens/forgot_pasword/forgot_password.dart';
 import 'package:ecommerces/screens/home_screen.dart';
 import 'package:ecommerces/screens/login_screen.dart';
+import 'package:ecommerces/screens/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -25,6 +29,10 @@ class MyApp extends StatelessWidget {
           routes: {
             '/': (context) => const HomeScreen(),
             '/login': (context) => const LoginScreen(),
+            '/register': (context) => const RegisterScreen(),
+            '/forgot_password': (context) => const ForgotPassword(),
+            '/enter_code': (context) => const OtpScreen(),
+            '/create_new_password': (context) => const EnterNewPassword(),
           },
         ));
   }
