@@ -1,7 +1,9 @@
+import 'package:ecommerces/model/category.dart';
 import 'package:ecommerces/widgets/banner_product.dart';
 import 'package:ecommerces/widgets/blog_item.dart';
 import 'package:ecommerces/widgets/carousel_banner.dart';
 import 'package:ecommerces/widgets/carousel_category.dart';
+import 'package:ecommerces/widgets/category_item.dart';
 import 'package:ecommerces/widgets/product_feature.dart';
 import 'package:ecommerces/widgets/search_input.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +18,45 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    void showMaterialDialog() {
+    List<Category> categories = [
+      const Category(
+        id: 1,
+        name: 'Tai nghe',
+        icon: Icon(Icons.headphones_outlined),
+        color: 0xFF3A9B7A,
+      ),
+      const Category(
+        id: 2,
+        name: 'Tay cầm chơi game',
+        icon: Icon(Icons.videogame_asset_outlined),
+        color: 0xFFFE6E4C,
+      ),
+      const Category(
+        id: 3,
+        name: 'Màn hình',
+        icon: Icon(Icons.screenshot_monitor_outlined),
+        color: 0xFFFFC120,
+      ),
+      const Category(
+        id: 4,
+        name: 'Bàn phím',
+        icon: Icon(Icons.keyboard_alt_outlined),
+        color: 0xFF9B81E5,
+      ),
+      const Category(
+        id: 5,
+        name: 'Laptop',
+        icon: Icon(Icons.computer_outlined),
+        color: 0xFFD3A984,
+      ),
+      const Category(
+        id: 6,
+        name: 'Lưu trữ',
+        icon: Icon(Icons.sd_card_outlined),
+        color: 0XFFac02db,
+      ),
+    ];
+    void showAuthDialog() {
       showDialog(
         context: context,
         builder: (context) {
@@ -109,6 +149,51 @@ class _HomeScreenState extends State<HomeScreen> {
       );
     }
 
+    void showCategoriesDialog() {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text('Tất cả danh mục',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.w600)),
+                    InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      child: const Icon(Icons.close),
+                    )
+                  ],
+                ),
+                const Divider()
+              ],
+            ),
+            content: SizedBox(
+              child: Wrap(
+                alignment: WrapAlignment.spaceBetween,
+                children: categories
+                    .map(
+                      (category) => CategoryItem(
+                        category: category,
+                      ),
+                    )
+                    .toList(),
+              ),
+            ),
+            titlePadding: const EdgeInsets.all(12),
+            contentPadding: const EdgeInsets.fromLTRB(5, 0, 5, 20),
+          );
+        },
+      );
+    }
+
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -130,7 +215,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     const Center(
                       child: Text(
-                        'DUMBES',
+                        'Gaming.',
                         style: TextStyle(
                             fontSize: 20,
                             color: Color(0XFF3669C9),
@@ -151,11 +236,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           const SizedBox(
                             width: 20,
                           ),
-                          InkWell(
-                            onTap: () {},
-                            splashColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            child: const Icon(Icons.shopping_cart_outlined),
+                          Badge(
+                            label: const Text('1'),
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.pushNamed(context, '/cart');
+                              },
+                              child: const Icon(Icons.shopping_cart_outlined),
+                            ),
                           ),
                         ],
                       ),
@@ -186,28 +274,36 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     Container(
                       color: Colors.white,
-                      child: const Column(
+                      child: Column(
                         children: [
+                          const SizedBox(
+                            height: 10,
+                          ),
                           Padding(
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 20, vertical: 10),
                             child: Row(
                               children: [
-                                Text('Danh mục',
+                                const Text('Danh mục',
                                     style: TextStyle(
                                         fontSize: 16,
                                         color: Colors.black,
                                         fontWeight: FontWeight.w600)),
-                                Spacer(),
-                                Text('Xem tất cả',
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        color: Color(0XFF3669C9),
-                                        fontWeight: FontWeight.w500)),
+                                const Spacer(),
+                                InkWell(
+                                  onTap: () {
+                                    showCategoriesDialog();
+                                  },
+                                  child: const Text('Xem tất cả',
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          color: Color(0XFF3669C9),
+                                          fontWeight: FontWeight.w500)),
+                                )
                               ],
                             ),
                           ),
-                          CarouselCategories()
+                          const CarouselCategories()
                         ],
                       ),
                     ),
@@ -215,16 +311,18 @@ class _HomeScreenState extends State<HomeScreen> {
                       title: 'Sản phẩm nổi bật',
                     ),
                     const BannerProduct(
-                        title: 'Khoai tây chiên cao cấp',
-                        image: 'assets/images/banner/product_banner.png',
+                        title:
+                            'Bluetooth Headset With Noise Cancelling Microphone',
+                        image: 'assets/images/products/headset.png',
                         buttonText: 'Mua ngay',
                         bgColor: 0XFF0ACF83),
                     const ProductFeature(
                       title: 'Sản phẩm bán chạy',
                     ),
                     const BannerProduct(
-                        title: '[Khuyến Mãi] Gạo 5 Kg',
-                        image: 'assets/images/banner/product_banner_two.png',
+                        title:
+                            'Card màn hình MSI GeForce RTX 3060 Ti GAMING X TRIO 8GB GDDR6',
+                        image: 'assets/images/products/video_card.png',
                         buttonText: 'Mua ngay',
                         bgColor: 0XFF3669C9),
                     const ProductFeature(
@@ -239,23 +337,22 @@ class _HomeScreenState extends State<HomeScreen> {
                     Container(
                       color: Colors.white,
                       width: MediaQuery.of(context).size.width,
-                      child: const Padding(
-                        padding: EdgeInsets.fromLTRB(20, 30, 20, 20),
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 30, 20, 20),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                            const Text(
                               'Tin mới nhất',
                               style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.black,
                                   fontWeight: FontWeight.w600),
                             ),
-                            BlogItem(),
-                            Divider(),
-                            BlogItem(),
-                            Divider(),
-                            BlogItem(),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            for (int i = 0; i < 3; i++) const BlogItem(),
                           ],
                         ),
                       ),
@@ -266,9 +363,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.white,
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 20, 20, 30),
+                        padding: const EdgeInsets.fromLTRB(20, 10, 20, 30),
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/blogs');
+                          },
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,
                               padding: const EdgeInsets.symmetric(vertical: 15),
@@ -315,8 +414,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Navigator.pushNamed(context, '/order');
               break;
             case 3:
-              // Navigator.pushNamed(context, '/login');
-              showMaterialDialog();
+              showAuthDialog();
               break;
           }
         },

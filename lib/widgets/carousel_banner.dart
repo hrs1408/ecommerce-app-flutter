@@ -14,8 +14,8 @@ class CarouselHome extends StatelessWidget {
         enlargeStrategy: CenterPageEnlargeStrategy.height,
       ),
       items: [
-        'assets/images/banner/banner_one.png',
-        'assets/images/banner/banner_two.png',
+        'assets/images/banner/banner_one.jpg',
+        'assets/images/banner/banner_two.jpg',
       ].map((i) {
         return Builder(
           builder: (BuildContext context) {
@@ -24,7 +24,7 @@ class CarouselHome extends StatelessWidget {
               height: 260,
               margin: const EdgeInsets.symmetric(horizontal: 5.0),
               decoration: const BoxDecoration(
-                color: Colors.white,
+                color: Colors.red,
                 borderRadius: BorderRadius.all(Radius.circular(10)),
                 boxShadow: [
                   BoxShadow(
@@ -36,59 +36,44 @@ class CarouselHome extends StatelessWidget {
                 ],
               ),
               child: Stack(
-                alignment: Alignment.topRight,
                 children: [
+                  //image border radius
                   ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
                     child: Image.asset(
                       i,
                       fit: BoxFit.cover,
-                      width: MediaQuery.of(context).size.width / 2,
-                      height: 250,
+                      width: MediaQuery.of(context).size.width,
+                      height: 260,
                     ),
                   ),
                   Positioned(
-                    left: 0,
+                    bottom: 0,
                     child: Container(
-                      width: MediaQuery.of(context).size.width / 2,
-                      height: 180,
-                      decoration: const BoxDecoration(
-                          color: Color(0XFF3669C9),
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(100),
-                            bottomLeft: Radius.circular(100),
-                            topRight: Radius.circular(1000),
-                            bottomRight: Radius.circular(1000),
-                          )),
-                      child: const Center(
-                          child: Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Giao hàng miễn phí trong 2KM!',
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600,
-                              ),
+                      width: MediaQuery.of(context).size.width,
+                      height: 50,
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'MSI',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
                             ),
-                            SizedBox(
-                              height: 10,
+                          ),
+                          Text(
+                            'MSI',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
                             ),
-                            Text(
-                              'Giai đoạn tháng 5 - tháng 8 năm 2023',
-                              style: TextStyle(
-                                fontSize: 10,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
-                        ),
-                      )),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],

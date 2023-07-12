@@ -11,8 +11,7 @@ class BannerProduct extends StatelessWidget {
       required this.title,
       required this.image,
       required this.buttonText,
-      required this.bgColor
-      });
+      required this.bgColor});
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +44,8 @@ class BannerProduct extends StatelessWidget {
                   width: 180,
                   child: Text(
                     title,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
                     style: const TextStyle(
                         color: Colors.white,
                         fontSize: 26,
@@ -54,6 +55,7 @@ class BannerProduct extends StatelessWidget {
                 InkWell(
                   onTap: () {},
                   child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
                         buttonText,
@@ -62,7 +64,7 @@ class BannerProduct extends StatelessWidget {
                         ),
                       ),
                       const Icon(
-                        Icons.arrow_forward,
+                        Icons.arrow_right,
                         color: Colors.white,
                       )
                     ],

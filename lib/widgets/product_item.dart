@@ -5,9 +5,108 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void showProductActionDialog() {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('Tùy chọn',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
+                InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  child: const Icon(Icons.close),
+                )
+              ],
+            ),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/product_detail');
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: Colors.black,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: const Row(
+                        children: [
+                          Icon(Icons.info_outlined),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text('Chi tiết sản phẩm'),
+                        ],
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: Colors.black,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: const Row(
+                        children: [
+                          Icon(Icons.share_outlined),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text('Chia sẻ sản phẩm'),
+                        ],
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+            actions: <Widget>[
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0XFF3669C9),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: const Text('Thêm vào giỏ hàng',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600)),
+                ),
+              ),
+            ],
+            titlePadding: const EdgeInsets.all(12),
+            contentPadding: const EdgeInsets.all(10),
+            actionsPadding: const EdgeInsets.all(10),
+          );
+        },
+      );
+    }
+
     return Container(
-      margin: const EdgeInsets.fromLTRB(20, 10, 0, 10),
-      width: 150,
+      margin: const EdgeInsets.fromLTRB(0, 10, 10, 10),
+      width: MediaQuery.of(context).size.width * 0.42,
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -25,39 +124,50 @@ class ProductItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              height: 130,
-              decoration: BoxDecoration(
-                image: const DecorationImage(
-                  image: AssetImage('assets/images/products/product.png'),
-                  fit: BoxFit.cover,
-                ),
-                borderRadius: BorderRadius.circular(10),
+            InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, '/product_detail');
+              },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    height: 130,
+                    decoration: BoxDecoration(
+                      image: const DecorationImage(
+                        image: AssetImage('assets/images/products/console.png'),
+                        fit: BoxFit.cover,
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Text(
+                    'Turbo Button For PC Gaming Remote',
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  const Text(
+                    '4.260.000 VNĐ',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: Color(0XFFFE3A30),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                ],
               ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            const Text(
-              'Bánh chuối',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            const Text(
-              '20.000 VNĐ',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                color: Color(0XFFFE3A30),
-              ),
-            ),
-            const SizedBox(
-              height: 5,
             ),
             Row(
               children: [
@@ -73,7 +183,9 @@ class ProductItem extends StatelessWidget {
                 ),
                 const Spacer(),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    showProductActionDialog();
+                  },
                   child: const Icon(Icons.more_vert),
                 ),
               ],

@@ -34,9 +34,23 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(
                     height: 20,
                   ),
-                  const Text(
-                    'Chào mừng bạn đến với BUMDES',
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                  RichText(
+                    text: const TextSpan(
+                      text: 'Cho mừng bạn đến với',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: ' Gaming.',
+                          style: TextStyle(
+                            color: Color(0XFF3669C9),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                   const SizedBox(
                     height: 20,

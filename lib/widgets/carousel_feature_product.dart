@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class CarouselProduct extends StatelessWidget {
   const CarouselProduct({super.key});
+
   void handleClick(String value) {
     switch (value) {
       case 'Logout':
@@ -19,12 +20,11 @@ class CarouselProduct extends StatelessWidget {
       height: 250,
       child: ListView(
         scrollDirection: Axis.horizontal,
-        children: const [
-          ProductItem(),
-          ProductItem(),
-          ProductItem(),
-          ProductItem(),
-          ProductItem(),
+        children: [
+          const SizedBox(
+            width: 20,
+          ),
+          for (int i = 0; i < 10; i++) const ProductItem(),
         ],
       ),
     );

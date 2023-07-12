@@ -6,54 +6,65 @@ class BlogItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, '/blog_detail');
+      },
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 20),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width / 1.8,
-              child: const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Làng BUMDES Sidosari Sản xuất thuốc nông nghiệp',
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text('Làng BUMDES Sidosari đổi mới...',
-                      style: TextStyle(
-                        fontSize: 14,
-                      )),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    '13 Jan 2021',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey,
-                    ),
-                  ),
-                ],
-              ),
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border(
+            bottom: BorderSide(
+              color: Colors.grey.withOpacity(0.2),
             ),
-            const SizedBox(
-              width: 20,
-            ),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
-              child: Image.asset(
-                'assets/images/blog/blog.png',
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 0),
+          child: Row(
+            children: [
+              Container(
                 width: 100,
                 height: 100,
-                fit: BoxFit.cover,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  image: const DecorationImage(
+                    image: AssetImage('assets/images/blog/blog.jpg'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
-            )
-          ],
+              const SizedBox(width: 10),
+              const Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'The Dev Diary Season Points Boomstick Gaming',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    Text(
+                      'Apple xác nhận bản cập nhật iOS khiến iPhone không thể truy cập Facebook, Instagram, Zoom: Đây là cách để gỡ bỏ',
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      '20/10/2021',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

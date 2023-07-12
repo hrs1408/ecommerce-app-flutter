@@ -1,4 +1,5 @@
 import 'package:ecommerces/model/category.dart';
+import 'package:ecommerces/screens/catalog/product_catalog.dart';
 import 'package:flutter/material.dart';
 
 class CategoryItem extends StatelessWidget {
@@ -12,7 +13,12 @@ class CategoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (_) => ProductCatalog(category: category.name)));
+      },
       child: SizedBox(
         width: 90,
         child: Column(
@@ -32,7 +38,10 @@ class CategoryItem extends StatelessWidget {
               ),
             ),
             Center(
-              child: Text(category.name, textAlign: TextAlign.center,),
+              child: Text(
+                category.name,
+                textAlign: TextAlign.center,
+              ),
             )
           ],
         ),

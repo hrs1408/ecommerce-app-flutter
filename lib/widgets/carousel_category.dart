@@ -10,39 +10,39 @@ class CarouselCategories extends StatelessWidget {
     List<Category> categories = [
       const Category(
         id: 1,
-        name: 'Đồ uống',
-        icon: Icon(Icons.emoji_food_beverage_outlined),
+        name: 'Tai nghe',
+        icon: Icon(Icons.headphones_outlined),
         color: 0xFF3A9B7A,
       ),
       const Category(
         id: 2,
-        name: 'Thức ăn nhanh',
-        icon: Icon(Icons.fastfood_outlined),
+        name: 'Tay cầm chơi game',
+        icon: Icon(Icons.videogame_asset_outlined),
         color: 0xFFFE6E4C,
       ),
       const Category(
         id: 3,
-        name: 'Pizza',
-        icon: Icon(Icons.local_pizza),
+        name: 'Màn hình',
+        icon: Icon(Icons.screenshot_monitor_outlined),
         color: 0xFFFFC120,
       ),
       const Category(
         id: 4,
-        name: 'Thời trang nữ',
-        icon: Icon(Icons.shopping_bag),
+        name: 'Bàn phím',
+        icon: Icon(Icons.keyboard_alt_outlined),
         color: 0xFF9B81E5,
       ),
       const Category(
         id: 5,
-        name: 'Thời trang nam',
-        icon: Icon(Icons.shopping_bag),
+        name: 'Laptop',
+        icon: Icon(Icons.computer_outlined),
         color: 0xFFD3A984,
       ),
       const Category(
         id: 6,
-        name: 'Thời trang trẻ em',
-        icon: Icon(Icons.shopping_bag),
-        color: 0xFFD3A984,
+        name: 'Lưu trữ',
+        icon: Icon(Icons.sd_card_outlined),
+        color: 0XFFac02db,
       ),
     ];
 

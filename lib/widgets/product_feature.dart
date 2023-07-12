@@ -26,7 +26,7 @@ class ProductFeature extends StatelessWidget {
                       const Spacer(),
                       InkWell(
                         onTap: () {},
-                        child: const Text('See All',
+                        child: const Text('Xem thêm',
                             style: TextStyle(
                                 fontSize: 14,
                                 color: Color(0XFF3669C9),
