@@ -237,7 +237,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             width: 20,
                           ),
                           Badge(
-                            label: const Text('1'),
+                            label: const Text('5'),
                             child: InkWell(
                               onTap: () {
                                 Navigator.pushNamed(context, '/cart');
@@ -261,10 +261,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       decoration: const BoxDecoration(
                         color: Colors.white,
                       ),
-                      child: const Padding(
-                        padding: EdgeInsets.all(20),
-                        child: SearchInput(
-                          hintText: 'Tìm kiếm...',
+                      child: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(context, '/search');
+                          },
+                          child: const SearchInput(
+                            hintText: 'Tìm kiếm...',
+                            enabledInput: false,
+                          ),
                         ),
                       ),
                     ),

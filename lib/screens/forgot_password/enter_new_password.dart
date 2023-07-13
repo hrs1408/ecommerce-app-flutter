@@ -6,7 +6,7 @@ class EnterNewPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _passwordState = TextEditingController();
+    final passwordState = TextEditingController();
     return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
@@ -49,7 +49,7 @@ class EnterNewPassword extends StatelessWidget {
                         height: 5,
                       ),
                       TextField(
-                        controller: _passwordState,
+                        controller: passwordState,
                         decoration: InputDecoration(
                           hintText: 'Mật khẩu mới',
                           hintStyle: const TextStyle(
@@ -76,7 +76,7 @@ class EnterNewPassword extends StatelessWidget {
                         height: 10,
                       ),
                       FlutterPwValidator(
-                          controller: _passwordState,
+                          controller: passwordState,
                           minLength: 6,
                           uppercaseCharCount: 2,
                           lowercaseCharCount: 2,
@@ -84,12 +84,7 @@ class EnterNewPassword extends StatelessWidget {
                           specialCharCount: 1,
                           width: 400,
                           height: 140,
-                          onSuccess: () {
-                            print('Thành công');
-                          },
-                          onFail: () {
-                            print('Thất bại');
-                          })
+                          onSuccess: () {})
                     ],
                   ),
                   const SizedBox(

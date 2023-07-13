@@ -24,7 +24,6 @@ class CarouselHome extends StatelessWidget {
               height: 260,
               margin: const EdgeInsets.symmetric(horizontal: 5.0),
               decoration: const BoxDecoration(
-                color: Colors.red,
                 borderRadius: BorderRadius.all(Radius.circular(10)),
                 boxShadow: [
                   BoxShadow(

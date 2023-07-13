@@ -76,11 +76,12 @@ class _BlogScreenState extends State<BlogScreen> {
                           color: Colors.white,
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(20),
+                          padding: const EdgeInsets.all(20),
                           child: Column(
                             children: [
                               const SearchInput(
                                 hintText: 'Tìm kiếm...',
+                                enabledInput: true,
                               ),
                               const SizedBox(
                                 height: 20,

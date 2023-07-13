@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
@@ -94,7 +95,9 @@ class OtpScreen extends StatelessWidget {
                           textFieldAlignment: MainAxisAlignment.spaceAround,
                           fieldStyle: FieldStyle.underline,
                           onCompleted: (pin) {
-                            print("Completed: " + pin);
+                            if (kDebugMode) {
+                              print("Completed: $pin");
+                            }
                           },
                         ),
                         const SizedBox(

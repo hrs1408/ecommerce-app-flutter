@@ -36,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   RichText(
                     text: const TextSpan(
-                      text: 'Cho mừng bạn đến với',
+                      text: 'Chào mừng bạn đến với',
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,

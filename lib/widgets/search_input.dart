@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 class SearchInput extends StatelessWidget {
   final String hintText;
+  final bool enabledInput;
 
-  const SearchInput({super.key, required this.hintText});
+  const SearchInput(
+      {super.key, required this.hintText, required this.enabledInput});
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +15,7 @@ class SearchInput extends StatelessWidget {
         hintStyle: const TextStyle(
           color: Colors.grey,
         ),
+        enabled: enabledInput,
         suffixIconColor: Colors.grey,
         suffixIcon: const Icon(Icons.search),
         filled: true,

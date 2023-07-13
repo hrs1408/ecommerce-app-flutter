@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pw_validator/flutter_pw_validator.dart';
 
@@ -6,7 +7,7 @@ class EnterInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _passwordState = TextEditingController();
+    final passwordState = TextEditingController();
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -85,7 +86,7 @@ class EnterInfo extends StatelessWidget {
                           height: 5,
                         ),
                         TextField(
-                          controller: _passwordState,
+                          controller: passwordState,
                           decoration: InputDecoration(
                             hintText: 'Mật khẩu mới',
                             hintStyle: const TextStyle(
@@ -112,7 +113,7 @@ class EnterInfo extends StatelessWidget {
                           height: 10,
                         ),
                         FlutterPwValidator(
-                            controller: _passwordState,
+                            controller: passwordState,
                             minLength: 6,
                             uppercaseCharCount: 2,
                             lowercaseCharCount: 2,
@@ -121,10 +122,14 @@ class EnterInfo extends StatelessWidget {
                             width: 400,
                             height: 140,
                             onSuccess: () {
-                              print('Thành công');
+                              if (kDebugMode) {
+                                print('Thành công');
+                              }
                             },
                             onFail: () {
-                              print('Thất bại');
+                              if (kDebugMode) {
+                                print('Thất bại');
+                              }
                             })
                       ],
                     ),

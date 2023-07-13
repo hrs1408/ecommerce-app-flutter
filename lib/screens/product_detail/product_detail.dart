@@ -3,8 +3,6 @@ import 'package:ecommerces/widgets/product_feature.dart';
 import 'package:ecommerces/widgets/rating_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
 
 class ProductDetail extends StatefulWidget {
   const ProductDetail({super.key});
@@ -45,15 +43,16 @@ class _ProductDetailState extends State<ProductDetail> {
                     Row(
                       children: [
                         InkWell(
-                            onTap: () {
-                              if (quantity > 1) {
-                                quantity--;
-                              }
-                            },
-                            child: const Icon(
-                              Icons.remove,
-                              color: Color(0XFF3669C9),
-                            )),
+                          onTap: () {
+                            if (quantity > 1) {
+                              quantity--;
+                            }
+                          },
+                          child: const Icon(
+                            Icons.remove,
+                            color: Color(0XFF3669C9),
+                          ),
+                        ),
                         const SizedBox(
                           width: 10,
                         ),
@@ -158,7 +157,7 @@ class _ProductDetailState extends State<ProductDetail> {
                         IconButton(
                             onPressed: () {}, icon: const Icon(Icons.share)),
                         Badge(
-                          label: const Text('1'),
+                          label: const Text('5'),
                           child: InkWell(
                             onTap: () {
                               Navigator.pushNamed(context, '/cart');

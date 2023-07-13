@@ -1,7 +1,7 @@
+import 'package:ecommerces/widgets/checkbox_with_label.dart';
 import 'package:ecommerces/widgets/product_item.dart';
 import 'package:ecommerces/widgets/search_input.dart';
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class ProductCatalog extends StatefulWidget {
   final String category;
@@ -13,7 +13,7 @@ class ProductCatalog extends StatefulWidget {
 }
 
 class _ProductCatalogState extends State<ProductCatalog> {
-  RangeValues _currentRangeValues = RangeValues(18, 60);
+  RangeValues _currentRangeValues = const RangeValues(18, 60);
 
   @override
   Widget build(BuildContext context) {
@@ -24,42 +24,80 @@ class _ProductCatalogState extends State<ProductCatalog> {
           return StatefulBuilder(
             builder: (context, innerSetState) {
               return Dialog(
-                child: Container(
-                  width: double.infinity,
-                  height: 300,
-                  child: Column(
-                    children: [
-                      const Text('Giá'),
-                      RangeSlider(
-                        values: _currentRangeValues,
-                        min: 18.0,
-                        max: 60.0,
-                        divisions: 10,
-                        labels: RangeLabels(
-                          _currentRangeValues.start.round().toString(),
-                          _currentRangeValues.end.round().toString(),
-                        ),
-                        onChanged: (RangeValues values) {
-                          innerSetState(() {
-                            _currentRangeValues = values;
-                          });
-                        },
-                      ),
-                      const Divider(),
-                      //checkbox
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                child: SizedBox(
+                    width: double.infinity,
+                    height: 410,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text('Miễn phí vận chuyển'),
-                          Checkbox(
-                            value: true,
-                            onChanged: (bool? value) {},
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(
+                                'Sắp xếp theo',
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold),
+                              ),
+                              const Spacer(),
+                              IconButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  icon: const Icon(Icons.close))
+                            ],
                           ),
+                          const Divider(),
+                          const Text('Giá'),
+                          RangeSlider(
+                            values: _currentRangeValues,
+                            min: 0,
+                            max: 5000000,
+                            divisions: 500000,
+                            activeColor: Colors.black,
+                            inactiveColor: Colors.grey[300],
+                            labels: RangeLabels(
+                              _currentRangeValues.start.round().toString(),
+                              _currentRangeValues.end.round().toString(),
+                            ),
+                            onChanged: (RangeValues values) {
+                              innerSetState(() {
+                                _currentRangeValues = values;
+                              });
+                            },
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Từ ${_currentRangeValues.start.round().toString()} đến ${_currentRangeValues.end.round().toString()}',
+                                style: const TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                              const Spacer(),
+                              TextButton(
+                                  onPressed: () {},
+                                  style: TextButton.styleFrom(
+                                      backgroundColor: Colors.black),
+                                  child: const Text(
+                                    'Áp dụng',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
+                                  ))
+                            ],
+                          ),
+                          const Divider(),
+                          const CheckBox(label: 'Giảm giá'),
+                          const CheckBox(label: 'Miễn phí vận chuyển'),
+                          const CheckBox(label: 'Giá tăng dần'),
+                          const CheckBox(label: 'Giá giảm dần'),
                         ],
-                      )
-                    ],
-                  ),
-                ),
+                      ),
+                    )),
               );
             },
           );
@@ -98,7 +136,7 @@ class _ProductCatalogState extends State<ProductCatalog> {
                   Padding(
                     padding: const EdgeInsets.only(right: 20),
                     child: Badge(
-                      label: const Text('1'),
+                      label: const Text('5'),
                       child: InkWell(
                         onTap: () {
                           Navigator.pushNamed(context, '/cart');
@@ -118,6 +156,7 @@ class _ProductCatalogState extends State<ProductCatalog> {
                 padding: EdgeInsets.all(20),
                 child: SearchInput(
                   hintText: 'Tìm kiếm...',
+                  enabledInput: true,
                 ),
               ),
             ),
