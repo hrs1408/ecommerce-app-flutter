@@ -324,8 +324,11 @@ class CheckoutScreen extends StatelessWidget {
               color: const Color(0XFF3669C9),
               borderRadius: BorderRadius.circular(10),
             ),
-            child: const Center(
-              child: Text(
+            child: TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/checkout_step_two');
+              },
+              child: const Text(
                 'Thanh toán',
                 style: TextStyle(
                     fontSize: 16,

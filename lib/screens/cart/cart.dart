@@ -39,7 +39,7 @@ class _CartScreenState extends State<CartScreen> {
                   ),
                   const Text(
                     'Giỏ hàng',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   IconButton(onPressed: () {}, icon: const Icon(Icons.search))
                 ],
@@ -131,7 +131,7 @@ class _CartScreenState extends State<CartScreen> {
                 backgroundColor: Colors.white,
                 padding:
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 20)),
-            child: const Text('Checkout',
+            child: const Text('Tiến hành đặt hàng',
                 style: TextStyle(
                     fontSize: 16,
                     color: Colors.black,

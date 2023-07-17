@@ -43,6 +43,7 @@ dependencies:
   syncfusion_flutter_sliders: ^22.1.38
   flutter_native_splash: ^2.3.1
   flutter_launcher_icons: ^0.13.1
+  flutter_credit_card: ^3.0.7
 
 dev_dependencies:
   flutter_test:
@@ -81,6 +82,8 @@ flutter:
     - assets/images/hand.png
     - assets/images/banner/banner_one.jpg
     - assets/images/banner/banner_two.jpg
+    - assets/images/avatar.webp
+    - assets/images/background_cover.png
 
 
 
