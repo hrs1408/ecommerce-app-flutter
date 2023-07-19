@@ -1,5 +1,6 @@
 import 'package:ecommerces/widgets/blog_item.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class BlogDetails extends StatelessWidget {
   const BlogDetails({super.key});
@@ -24,7 +25,7 @@ class BlogDetails extends StatelessWidget {
                 children: [
                   IconButton(
                       onPressed: () {
-                        Navigator.pop(context);
+                        Get.back();
                       },
                       icon: const Icon(Icons.arrow_back)),
                   const Text(

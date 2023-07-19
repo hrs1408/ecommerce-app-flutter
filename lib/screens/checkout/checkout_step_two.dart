@@ -1,7 +1,10 @@
+import 'package:ecommerces/screens/checkout/order_success.dart';
 import 'package:ecommerces/widgets/credit_card_check.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../widgets/bank_transfer_check.dart';
+import '../cart/cart.dart';
 
 class CheckoutStepTwoScreen extends StatelessWidget {
   const CheckoutStepTwoScreen({super.key});
@@ -30,7 +33,7 @@ class CheckoutStepTwoScreen extends StatelessWidget {
               children: [
                 IconButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Get.back();
                   },
                   icon: const Icon(Icons.arrow_back),
                 ),
@@ -44,7 +47,7 @@ class CheckoutStepTwoScreen extends StatelessWidget {
                     label: const Text('5'),
                     child: InkWell(
                       onTap: () {
-                        Navigator.pushNamed(context, '/cart');
+                        Get.to(const CartScreen());
                       },
                       child: const Icon(Icons.shopping_cart_outlined),
                     ),
@@ -128,7 +131,7 @@ class CheckoutStepTwoScreen extends StatelessWidget {
             ),
             child: TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/order_success');
+                Get.to(const OrderSuccessScreen());
               },
               child: const Text(
                 'Hoàn tất',

@@ -1,5 +1,7 @@
+import 'package:ecommerces/screens/checkout/checkout.dart';
 import 'package:ecommerces/widgets/item_in_cart.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -33,7 +35,7 @@ class _CartScreenState extends State<CartScreen> {
                 children: [
                   IconButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      Get.back();
                     },
                     icon: const Icon(Icons.arrow_back),
                   ),
@@ -121,7 +123,7 @@ class _CartScreenState extends State<CartScreen> {
           padding: const EdgeInsets.all(15),
           child: ElevatedButton(
             onPressed: () {
-              Navigator.pushNamed(context, '/checkout');
+              Get.to(const CheckoutScreen());
             },
             style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(

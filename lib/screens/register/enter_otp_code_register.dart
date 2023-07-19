@@ -1,5 +1,7 @@
+import 'package:ecommerces/screens/register/enter_info.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 
@@ -125,7 +127,7 @@ class OtpScreenRegister extends StatelessWidget {
                       height: 50,
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, '/enter_info');
+                          Get.to(const EnterInfo());
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0XFF3669C9),

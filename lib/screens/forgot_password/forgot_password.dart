@@ -1,4 +1,6 @@
+import 'package:ecommerces/screens/forgot_password/enter_otp_code.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
@@ -20,7 +22,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           children: [
             IconButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  Get.back();
                 },
                 icon: const Icon(Icons.arrow_back)),
             Padding(
@@ -88,7 +90,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     height: 50,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/enter_code');
+                        Get.to(const OtpScreen());
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0XFF3669C9),

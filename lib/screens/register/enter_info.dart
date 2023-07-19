@@ -1,6 +1,9 @@
+import 'package:ecommerces/screens/home_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pw_validator/flutter_pw_validator.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/get_core.dart';
 
 class EnterInfo extends StatelessWidget {
   const EnterInfo({super.key});
@@ -141,7 +144,7 @@ class EnterInfo extends StatelessWidget {
                       height: 50,
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, '/');
+                          Get.to(const HomeScreen());
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0XFF3669C9),

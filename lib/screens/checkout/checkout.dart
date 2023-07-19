@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
 import '../../widgets/product_checkout.dart';
+import '../cart/cart.dart';
+import 'checkout_step_two.dart';
 
 class CheckoutScreen extends StatelessWidget {
   const CheckoutScreen({super.key});
@@ -28,7 +30,7 @@ class CheckoutScreen extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      Get.back();
                     },
                     icon: const Icon(Icons.arrow_back),
                   ),
@@ -42,7 +44,7 @@ class CheckoutScreen extends StatelessWidget {
                       label: const Text('5'),
                       child: InkWell(
                         onTap: () {
-                          Navigator.pushNamed(context, '/cart');
+                          Get.to(const CartScreen());
                         },
                         child: const Icon(Icons.shopping_cart_outlined),
                       ),
@@ -200,7 +202,9 @@ class CheckoutScreen extends StatelessWidget {
                                       ),
                                       const Spacer(),
                                       TextButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          Get.to(const CartScreen());
+                                        },
                                         child: const Text(
                                           'Sửa',
                                           style: TextStyle(color: Colors.black),
@@ -326,7 +330,7 @@ class CheckoutScreen extends StatelessWidget {
             ),
             child: TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/checkout_step_two');
+                Get.to(const CheckoutStepTwoScreen());
               },
               child: const Text(
                 'Thanh toán',

@@ -46,7 +46,8 @@ class CreditCartCheckbox extends StatelessWidget {
                               ],
                             ),
                             Transform(
-                                transform: Transform.scale(scale: 0.8).transform,
+                                transform:
+                                    Transform.scale(scale: 0.8).transform,
                                 child: Checkbox(
                                     activeColor: Colors.black,
                                     value: true,
@@ -54,6 +55,7 @@ class CreditCartCheckbox extends StatelessWidget {
                           ],
                         ),
                         CreditCardWidget(
+                          width: 320,
                           height: 160,
                           bankName: 'Vietcombank',
                           cardNumber: '5450 7879 4864 7854',
@@ -80,7 +82,8 @@ class CreditCartCheckbox extends StatelessWidget {
                               ],
                             ),
                             Transform(
-                                transform: Transform.scale(scale: 0.8).transform,
+                                transform:
+                                    Transform.scale(scale: 0.8).transform,
                                 child: Checkbox(
                                     activeColor: Colors.black,
                                     value: false,
@@ -88,6 +91,7 @@ class CreditCartCheckbox extends StatelessWidget {
                           ],
                         ),
                         CreditCardWidget(
+                          width: 320,
                           height: 160,
                           bankName: 'HDBank',
                           cardNumber: '5450 7879 4864 7854',
@@ -100,7 +104,8 @@ class CreditCartCheckbox extends StatelessWidget {
                         const Divider(),
                       ],
                     ),
-                    TextButton(onPressed: (){}, child: const Text('Thêm thẻ mới'))
+                    TextButton(
+                        onPressed: () {}, child: const Text('Thêm thẻ mới'))
                   ],
                 )
               : const SizedBox())

@@ -1,7 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
+
+import 'enter_new_password.dart';
 
 class OtpScreen extends StatelessWidget {
   const OtpScreen({super.key});
@@ -125,7 +129,7 @@ class OtpScreen extends StatelessWidget {
                       height: 50,
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, '/create_new_password');
+                          Get.to(const EnterNewPassword());
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0XFF3669C9),

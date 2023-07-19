@@ -1,4 +1,6 @@
+import 'package:ecommerces/screens/forgot_password/enter_new_password.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -18,7 +20,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             children: [
               IconButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Get.back();
                   },
                   icon: const Icon(Icons.arrow_back)),
               Padding(
@@ -86,7 +88,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       height: 50,
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, '/enter_code_register');
+                          Get.to(const EnterNewPassword());
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0XFF3669C9),

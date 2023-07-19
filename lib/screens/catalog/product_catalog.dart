@@ -1,7 +1,9 @@
+import 'package:ecommerces/screens/cart/cart.dart';
 import 'package:ecommerces/widgets/checkbox_with_label.dart';
 import 'package:ecommerces/widgets/product_item.dart';
 import 'package:ecommerces/widgets/search_input.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProductCatalog extends StatefulWidget {
   final String category;
@@ -44,7 +46,7 @@ class _ProductCatalogState extends State<ProductCatalog> {
                               const Spacer(),
                               IconButton(
                                   onPressed: () {
-                                    Navigator.pop(context);
+                                    Get.back();
                                   },
                                   icon: const Icon(Icons.close))
                             ],
@@ -125,7 +127,7 @@ class _ProductCatalogState extends State<ProductCatalog> {
                 children: [
                   IconButton(
                       onPressed: () {
-                        Navigator.pop(context);
+                        Get.back();
                       },
                       icon: const Icon(Icons.arrow_back)),
                   Text(
@@ -139,7 +141,7 @@ class _ProductCatalogState extends State<ProductCatalog> {
                       label: const Text('5'),
                       child: InkWell(
                         onTap: () {
-                          Navigator.pushNamed(context, '/cart');
+                          Get.to(const CartScreen());
                         },
                         child: const Icon(Icons.shopping_cart_outlined),
                       ),

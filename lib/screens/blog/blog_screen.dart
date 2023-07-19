@@ -2,6 +2,7 @@ import 'package:ecommerces/model/blog.dart';
 import 'package:ecommerces/widgets/blog_item.dart';
 import 'package:ecommerces/widgets/search_input.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class BlogScreen extends StatefulWidget {
   const BlogScreen({super.key});
@@ -42,7 +43,7 @@ class _BlogScreenState extends State<BlogScreen> {
                   children: [
                     IconButton(
                         onPressed: () {
-                          Navigator.pop(context);
+                          Get.back();
                         },
                         icon: const Icon(Icons.arrow_back)),
                     const Positioned(

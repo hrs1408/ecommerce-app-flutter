@@ -1,4 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ecommerces/screens/cart/cart.dart';
+import 'package:ecommerces/screens/review/review_product.dart';
 import 'package:ecommerces/widgets/product_feature.dart';
 import 'package:ecommerces/widgets/rating_item.dart';
 import 'package:flutter/material.dart';
@@ -138,7 +140,7 @@ class _ProductDetailState extends State<ProductDetail> {
                     left: 0,
                     child: IconButton(
                       onPressed: () {
-                        Navigator.pop(context);
+                        Get.back();
                       },
                       icon: const Icon(Icons.arrow_back),
                     ),
@@ -160,7 +162,7 @@ class _ProductDetailState extends State<ProductDetail> {
                           label: const Text('5'),
                           child: InkWell(
                             onTap: () {
-                              Navigator.pushNamed(context, '/cart');
+                              Get.to(const CartScreen());
                             },
                             child: const Icon(Icons.shopping_cart_outlined),
                           ),
@@ -309,8 +311,7 @@ class _ProductDetailState extends State<ProductDetail> {
                                   const EdgeInsets.fromLTRB(20, 20, 20, 20),
                               child: ElevatedButton(
                                 onPressed: () {
-                                  Navigator.pushNamed(
-                                      context, '/review_product');
+                                  Get.to(const ReviewProductScreen());
                                 },
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.white,

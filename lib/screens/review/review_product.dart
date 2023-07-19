@@ -1,6 +1,7 @@
 import 'package:ecommerces/widgets/rating_item.dart';
 import 'package:ecommerces/widgets/rating_star_with_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ReviewProductScreen extends StatelessWidget {
   const ReviewProductScreen({super.key});
@@ -28,7 +29,7 @@ class ReviewProductScreen extends StatelessWidget {
                     left: 0,
                     child: IconButton(
                       onPressed: () {
-                        Navigator.pop(context);
+                        Get.back();
                       },
                       icon: const Icon(Icons.arrow_back),
                     ),

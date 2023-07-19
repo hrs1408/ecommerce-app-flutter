@@ -1,4 +1,6 @@
+import 'package:ecommerces/screens/login/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -26,7 +28,7 @@ class ProfileScreen extends StatelessWidget {
               children: [
                 IconButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Get.back();
                   },
                   icon: const Icon(Icons.arrow_back),
                 ),
@@ -191,7 +193,7 @@ class ProfileScreen extends StatelessWidget {
                               foregroundColor: Colors.black,
                             ),
                             onPressed: () {
-                              Navigator.pushNamed(context, '/login');
+                              Get.to(const LoginScreen());
                             },
                             child: const Row(
                               children: [

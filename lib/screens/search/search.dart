@@ -1,5 +1,6 @@
 import 'package:ecommerces/widgets/product_feature.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../widgets/search_input.dart';
 
@@ -27,7 +28,7 @@ class SearchScreen extends StatelessWidget {
                 children: [
                   IconButton(
                       onPressed: () {
-                        Navigator.pop(context);
+                        Get.back();
                       },
                       icon: const Icon(Icons.arrow_back)),
                   const Positioned(
@@ -72,7 +73,7 @@ class SearchScreen extends StatelessWidget {
                               height: 20,
                             ),
                             Container(
-                              height: 200,
+                              height: 230,
                               child: const Column(
                                 children: [],
                               ),

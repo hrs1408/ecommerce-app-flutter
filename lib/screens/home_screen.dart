@@ -1,4 +1,6 @@
 import 'package:ecommerces/model/category.dart';
+import 'package:ecommerces/screens/cart/cart.dart';
+import 'package:ecommerces/screens/search/search.dart';
 import 'package:ecommerces/widgets/banner_product.dart';
 import 'package:ecommerces/widgets/blog_item.dart';
 import 'package:ecommerces/widgets/carousel_banner.dart';
@@ -7,6 +9,10 @@ import 'package:ecommerces/widgets/category_item.dart';
 import 'package:ecommerces/widgets/product_feature.dart';
 import 'package:ecommerces/widgets/search_input.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'blog/blog_screen.dart';
+import 'login/login_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -71,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             fontSize: 18, fontWeight: FontWeight.w600)),
                     InkWell(
                       onTap: () {
-                        Navigator.pop(context);
+                        Get.back();
                       },
                       splashColor: Colors.transparent,
                       highlightColor: Colors.transparent,
@@ -125,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 50,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, '/login');
+                    Get.to(const LoginScreen());
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0XFF3669C9),
@@ -164,7 +170,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             fontSize: 18, fontWeight: FontWeight.w600)),
                     InkWell(
                       onTap: () {
-                        Navigator.pop(context);
+                        Get.back();
                       },
                       splashColor: Colors.transparent,
                       highlightColor: Colors.transparent,
@@ -240,7 +246,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             label: const Text('5'),
                             child: InkWell(
                               onTap: () {
-                                Navigator.pushNamed(context, '/cart');
+                                Get.to(const CartScreen());
                               },
                               child: const Icon(Icons.shopping_cart_outlined),
                             ),
@@ -265,7 +271,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         padding: const EdgeInsets.all(20),
                         child: InkWell(
                           onTap: () {
-                            Navigator.pushNamed(context, '/search');
+                            Get.to(SearchScreen());
                           },
                           child: const SearchInput(
                             hintText: 'Tìm kiếm...',
@@ -372,7 +378,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         padding: const EdgeInsets.fromLTRB(20, 10, 20, 30),
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, '/blogs');
+                            Get.to(const BlogScreen());
                           },
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,

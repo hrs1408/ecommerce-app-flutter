@@ -1,4 +1,6 @@
+import 'package:ecommerces/screens/blog/blog_detail.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class BlogItem extends StatelessWidget {
   const BlogItem({super.key});
@@ -7,7 +9,7 @@ class BlogItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, '/blog_detail');
+        Get.to(const BlogDetails());
       },
       child: Container(
         width: double.infinity,

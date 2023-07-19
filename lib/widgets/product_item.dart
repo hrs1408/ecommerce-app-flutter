@@ -1,4 +1,6 @@
+import 'package:ecommerces/screens/product_detail/product_detail.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProductItem extends StatelessWidget {
   const ProductItem({super.key});
@@ -18,7 +20,7 @@ class ProductItem extends StatelessWidget {
                         TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
                 InkWell(
                   onTap: () {
-                    Navigator.pop(context);
+                    Get.back();
                   },
                   splashColor: Colors.transparent,
                   highlightColor: Colors.transparent,
@@ -34,7 +36,7 @@ class ProductItem extends StatelessWidget {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/product_detail');
+                        Get.to(ProductDetail());
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
@@ -126,7 +128,7 @@ class ProductItem extends StatelessWidget {
           children: [
             InkWell(
               onTap: () {
-                Navigator.pushNamed(context, '/product_detail');
+                Get.to(ProductDetail());
               },
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,4 +1,12 @@
+import 'dart:async';
+
+import 'package:ecommerces/screens/forgot_password/forgot_password.dart';
+import 'package:ecommerces/screens/home_screen.dart';
+import 'package:ecommerces/screens/register/register_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../controller/auth_controller.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -8,8 +16,33 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final LoginController controller = Get.put(LoginController());
+
+  final _emailTextController = TextEditingController();
+  final _passwordTextController = TextEditingController();
+
+  final _formKey = GlobalKey<FormState>();
+
+  void handleLogin() async {
+    String error = await controller.login(
+        email: _emailTextController.text.trim(),
+        password: _passwordTextController.text);
+    if (error != "") {
+      Get.defaultDialog(title: "Oop!", middleText: error);
+    } else {
+      Get.defaultDialog(
+        title: "Success!",
+        middleText: "Login success",
+      );
+      Timer(const Duration(seconds: 2), () {
+        Get.offAll(const HomeScreen());
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final form = _formKey.currentState;
     return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
@@ -21,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 IconButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      Get.back();
                     },
                     icon: const Icon(Icons.arrow_back)),
               ],
@@ -73,6 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 5,
                       ),
                       TextField(
+                        controller: _emailTextController,
                         decoration: InputDecoration(
                           hintText: 'Email/ Số điện thoại',
                           hintStyle: const TextStyle(
@@ -110,6 +144,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 5,
                       ),
                       TextField(
+                        controller: _passwordTextController,
                         decoration: InputDecoration(
                           hintText: 'Mật khẩu',
                           hintStyle: const TextStyle(
@@ -137,21 +172,24 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 90,
                   ),
                   SizedBox(
-                    width: double.infinity,
-                    height: 50,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/profile');
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0XFF3669C9),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+                      width: double.infinity,
+                      height: 50,
+                      child: Obx(
+                        () => ElevatedButton(
+                          onPressed: () {
+                            handleLogin();
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: controller.loginProcess.isTrue
+                                ? Colors.grey
+                                : const Color(0XFF3669C9),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          child: const Text('Đăng nhập'),
                         ),
-                      ),
-                      child: const Text('Đăng nhập'),
-                    ),
-                  ),
+                      )),
                   const SizedBox(
                     height: 90,
                   ),
@@ -160,7 +198,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, '/forgot_password');
+                          Get.to(const ForgotPassword());
                         },
                         child: const Text(
                           'Quên mật khẩu?',
@@ -172,7 +210,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, '/register');
+                          Get.to(const RegisterScreen());
                         },
                         child: const Text(
                           'Đăng ký',
