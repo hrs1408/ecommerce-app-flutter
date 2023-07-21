@@ -2,6 +2,9 @@ import 'package:ecommerces/screens/checkout/checkout.dart';
 import 'package:ecommerces/widgets/item_in_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+
+import '../../controller/cart_controller.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -11,6 +14,8 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+  CartController controller = Get.put(CartController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,66 +54,90 @@ class _CartScreenState extends State<CartScreen> {
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height - 250,
-              child: const SingleChildScrollView(
+              child: SingleChildScrollView(
                 child: Padding(
-                  padding: EdgeInsets.all(20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      CartItem(),
-                      CartItem(),
-                      CartItem(),
-                      CartItem(),
-                      CartItem(),
-                    ],
-                  ),
-                ),
+                    padding: const EdgeInsets.all(20),
+                    child: Obx(() => Column(
+                          children: controller.cartList
+                              .map((e) => CartItemW(
+                                    cartItem: e,
+                                  ))
+                              .toList(),
+                        ))),
               ),
             ),
             Container(
               color: Colors.white,
               width: MediaQuery.of(context).size.width,
               height: 100,
-              child: const Column(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SizedBox(width: 20),
-                      Text(
+                      const SizedBox(width: 20),
+                      const Text(
                         'Sản phẩm: ',
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w600),
                       ),
-                      Spacer(),
-                      Text(
-                        '5',
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w600),
+                      const Spacer(),
+                      Obx(
+                        () => Text(
+                          controller.cartList.length.toString(),
+                          style: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w600),
+                        ),
                       ),
-                      SizedBox(width: 20),
+                      const SizedBox(width: 20),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SizedBox(width: 20),
-                      Text(
+                      const SizedBox(width: 20),
+                      const Text(
+                        'Số lượng: ',
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.w600),
+                      ),
+                      const Spacer(),
+                      Obx(
+                        () => Text(
+                          controller.itemCount.toString(),
+                          style: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                      const SizedBox(width: 20),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const SizedBox(width: 20),
+                      const Text(
                         'Tổng tiền:',
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w600),
                       ),
-                      Spacer(),
-                      Text(
-                        '21.300.000 VNĐ',
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w600),
+                      const Spacer(),
+                      Obx(
+                        () => Text(
+                          NumberFormat.currency(locale: 'vi')
+                              .format(controller.total.value),
+                          style: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w600),
+                        ),
                       ),
-                      SizedBox(width: 20),
+                      const SizedBox(width: 20),
                     ],
                   )
                 ],

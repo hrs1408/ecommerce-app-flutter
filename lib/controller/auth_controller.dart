@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class LoginController extends GetxController {
   RxBool loginProcess = false.obs;
   var error = "";
-
+  var tempToken = "";
   Future<String> login(
       {required String email, required String password}) async {
     error = "";
@@ -17,6 +17,7 @@ class LoginController extends GetxController {
         //success
         final prefs = await SharedPreferences.getInstance();
         prefs.setString("access_token", loginResp[0]);
+        tempToken = loginResp[0];
       } else {
         error = loginResp[1];
       }
@@ -24,5 +25,10 @@ class LoginController extends GetxController {
       loginProcess(false);
     }
     return error;
+  }
+
+  Future<String> getToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString("access_token") ?? "";
   }
 }

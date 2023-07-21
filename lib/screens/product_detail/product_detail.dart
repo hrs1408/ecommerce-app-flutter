@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ecommerces/controller/cart_controller.dart';
 import 'package:ecommerces/screens/cart/cart.dart';
 import 'package:ecommerces/screens/review/review_product.dart';
 import 'package:ecommerces/widgets/product_feature.dart';
@@ -20,8 +21,28 @@ class ProductDetail extends StatefulWidget {
 
 class _ProductDetailState extends State<ProductDetail> {
   RxInt quantity = 1.obs;
+  CartController controller = Get.put(CartController());
 
-  void showAddToCardDialog() {
+  void showSuccessDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Thêm vào giỏ hàng thành công'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Get.back();
+              },
+              child: const Text('OK'),
+            )
+          ],
+        );
+      },
+    );
+  }
+
+  void showAddToCardDialog(int id) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -99,8 +120,12 @@ class _ProductDetailState extends State<ProductDetail> {
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
-                  Get.snackbar('Thông báo', 'Thêm vào giỏ hàng thành công');
+                  controller.addProductToCart(
+                    productId: id,
+                    quantity: quantity.value,
+                  );
                   Get.back();
+                  showSuccessDialog();
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0XFF3669C9),
@@ -379,7 +404,7 @@ class _ProductDetailState extends State<ProductDetail> {
               padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
               child: ElevatedButton(
                 onPressed: () {
-                  showAddToCardDialog();
+                  showAddToCardDialog(widget.product.id);
                 },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0XFF3669C9),

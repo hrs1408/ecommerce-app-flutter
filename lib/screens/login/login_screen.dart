@@ -32,7 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
     } else {
       Get.defaultDialog(
         title: "Success!",
-        middleText: "Login success",
+        middleText: controller.tempToken,
       );
       Timer(const Duration(seconds: 2), () {
         Get.offAll(const HomeScreen());

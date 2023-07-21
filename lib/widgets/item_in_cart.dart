@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
-class CartItem extends StatelessWidget {
-  const CartItem({super.key});
+import '../controller/cart_controller.dart';
+import '../model/cart_item.dart';
+
+class CartItemW extends StatelessWidget {
+  final CartItem cartItem;
+
+  const CartItemW({super.key, required this.cartItem});
 
   @override
   Widget build(BuildContext context) {
-    RxInt quantity = 1.obs;
+    RxInt quantity = cartItem.quantity.obs;
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.all(10),
       width: double.infinity,
       height: 120,
       decoration: BoxDecoration(
@@ -28,13 +35,19 @@ class CartItem extends StatelessWidget {
           Container(
             width: 120,
             height: 120,
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(10),
                 bottomLeft: Radius.circular(10),
               ),
               image: DecorationImage(
-                image: AssetImage('assets/images/products/console.png'),
+                image: cartItem.product.images.isNotEmpty
+                    ? NetworkImage(
+                        cartItem.product.images[0]['file_path'],
+                      )
+                    : const NetworkImage(
+                        'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png',
+                      ),
                 fit: BoxFit.cover,
               ),
             ),
@@ -45,19 +58,20 @@ class CartItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Beautify Card',
+                Text(
+                  cartItem.product.name,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(height: 10),
-                const Text(
-                  '4.260.000 VND',
-                  style: TextStyle(
+                Text(
+                  NumberFormat.currency(locale: 'vi')
+                      .format(cartItem.product.price),
+                  style: const TextStyle(
                     fontSize: 16,
                     color: Colors.red,
                     fontWeight: FontWeight.bold,
@@ -77,6 +91,10 @@ class CartItem extends StatelessWidget {
                           onTap: () {
                             if (quantity.value > 1) {
                               quantity--;
+                              Get.find<CartController>().updateCartItem(
+                                cartItem.id,
+                                quantity.value,
+                              );
                             }
                           },
                           child: const Icon(Icons.remove),
@@ -102,6 +120,10 @@ class CartItem extends StatelessWidget {
                       child: InkWell(
                         onTap: () {
                           quantity++;
+                          Get.find<CartController>().updateCartItem(
+                            cartItem.id,
+                            quantity.value,
+                          );
                         },
                         child: const Icon(Icons.add),
                       ),
@@ -113,7 +135,9 @@ class CartItem extends StatelessWidget {
           ),
           const SizedBox(width: 10),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.find<CartController>().deleteProductInCart(cartItem.id);
+            },
             icon: const Icon(Icons.delete),
           ),
         ],
