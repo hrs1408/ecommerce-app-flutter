@@ -1,9 +1,14 @@
 import 'package:ecommerces/screens/product_detail/product_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+
+import '../model/product.dart';
 
 class ProductItem extends StatelessWidget {
-  const ProductItem({super.key});
+  final Product product;
+
+  const ProductItem({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +41,7 @@ class ProductItem extends StatelessWidget {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        Get.to(ProductDetail());
+                        Get.to(ProductDetail(product: product));
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
@@ -128,7 +133,9 @@ class ProductItem extends StatelessWidget {
           children: [
             InkWell(
               onTap: () {
-                Get.to(ProductDetail());
+                Get.to(ProductDetail(
+                  product: product,
+                ));
               },
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -136,8 +143,11 @@ class ProductItem extends StatelessWidget {
                   Container(
                     height: 130,
                     decoration: BoxDecoration(
-                      image: const DecorationImage(
-                        image: AssetImage('assets/images/products/console.png'),
+                      image: DecorationImage(
+                        image: product.images.isNotEmpty
+                            ? NetworkImage(product.images[0]['file_path'])
+                            : const NetworkImage(
+                                'https://3qleather.com/wp-content/themes/olympusinn/assets/images/default-placeholder.png'),
                         fit: BoxFit.cover,
                       ),
                       borderRadius: BorderRadius.circular(10),
@@ -146,10 +156,10 @@ class ProductItem extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  const Text(
-                    'Turbo Button For PC Gaming Remote',
+                  Text(
+                    product.name,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                     ),
@@ -157,9 +167,9 @@ class ProductItem extends StatelessWidget {
                   const SizedBox(
                     height: 5,
                   ),
-                  const Text(
-                    '4.260.000 VNĐ',
-                    style: TextStyle(
+                  Text(
+                    NumberFormat.currency(locale: 'vi').format(product.price),
+                    style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
                       color: Color(0XFFFE3A30),

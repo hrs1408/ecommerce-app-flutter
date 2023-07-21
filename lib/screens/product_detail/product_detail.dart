@@ -5,9 +5,14 @@ import 'package:ecommerces/widgets/product_feature.dart';
 import 'package:ecommerces/widgets/rating_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+
+import '../../model/product.dart';
 
 class ProductDetail extends StatefulWidget {
-  const ProductDetail({super.key});
+  final Product product;
+
+  const ProductDetail({super.key, required this.product});
 
   @override
   State<ProductDetail> createState() => _ProductDetailState();
@@ -185,26 +190,41 @@ class _ProductDetailState extends State<ProductDetail> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CarouselSlider(
-                            options: CarouselOptions(),
-                            items: [1, 2, 3, 4, 5]
-                                .map((item) => Container(
-                                      width: MediaQuery.of(context).size.width,
-                                      color: Colors.white,
-                                      child: const Image(
-                                        image: AssetImage(
-                                            'assets/images/products/console.png'),
-                                        fit: BoxFit.fitHeight,
-                                        width: 200,
-                                      ),
-                                    ))
-                                .toList(),
+                            options: CarouselOptions(
+                              disableCenter: true,
+                              enableInfiniteScroll: false,
+                              viewportFraction: 1,
+                              height: 250,
+                            ),
+                            items: widget.product.images.isNotEmpty
+                                ? widget.product.images
+                                    .map((item) => Container(
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          color: Colors.white,
+                                          child: Image(
+                                            image:
+                                                NetworkImage(item['file_path']),
+                                            fit: BoxFit.cover,
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                          ),
+                                        ))
+                                    .toList()
+                                : [
+                                    Image.network(
+                                      'https://3qleather.com/wp-content/themes/olympusinn/assets/images/default-placeholder.png',
+                                      fit: BoxFit.cover,
+                                    )
+                                  ],
                           ),
                           const SizedBox(
                             height: 20,
                           ),
-                          const Text(
-                            'Turbo Button For PC Gaming Remote',
-                            style: TextStyle(
+                          Text(
+                            widget.product.name,
+                            style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w600,
                             ),
@@ -212,9 +232,10 @@ class _ProductDetailState extends State<ProductDetail> {
                           const SizedBox(
                             height: 10,
                           ),
-                          const Text(
-                            '4.260.000 VNĐ',
-                            style: TextStyle(
+                          Text(
+                            NumberFormat.currency(locale: 'vi')
+                                .format(widget.product.price),
+                            style: const TextStyle(
                               fontSize: 16,
                               color: Color(0XFFFE3A30),
                               fontWeight: FontWeight.w600,
@@ -268,8 +289,7 @@ class _ProductDetailState extends State<ProductDetail> {
                           const SizedBox(
                             height: 20,
                           ),
-                          const Text(
-                              'Keripik Pisang Dahlia adalah keripik pisang yang dibuat dengan bahan-bahan berkualitas dan diproses dengan higienis. Keripik pisang ini memiliki rasa yang renyah dan gurih. Keripik pisang ini cocok untuk dijadikan oleh-oleh karena memiliki kemasan yang menarik dan praktis.'),
+                          Text(widget.product.description),
                           const Divider(
                             height: 50,
                           ),

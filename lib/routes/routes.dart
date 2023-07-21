@@ -63,10 +63,10 @@ class Routes {
       name: '/blog_detail',
       page: () => const BlogDetails(),
     ),
-    GetPage(
-      name: '/product_detail',
-      page: () => const ProductDetail(),
-    ),
+    // GetPage(
+    //   name: '/product_detail',
+    //   page: () => const ProductDetail(),
+    // ),
     GetPage(
       name: '/review_product',
       page: () => const ReviewProductScreen(),

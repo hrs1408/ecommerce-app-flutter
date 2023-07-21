@@ -5,6 +5,8 @@ import 'package:ecommerces/widgets/search_input.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../controller/product_controller.dart';
+
 class ProductCatalog extends StatefulWidget {
   final String category;
 
@@ -16,6 +18,7 @@ class ProductCatalog extends StatefulWidget {
 
 class _ProductCatalogState extends State<ProductCatalog> {
   RangeValues _currentRangeValues = const RangeValues(18, 60);
+  ProductController controller = Get.put(ProductController());
 
   @override
   Widget build(BuildContext context) {
@@ -168,11 +171,20 @@ class _ProductCatalogState extends State<ProductCatalog> {
               child: SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.all(18),
-                  child: Wrap(
-                    alignment: WrapAlignment.spaceBetween,
-                    children: [
-                      for (int i = 0; i < 10; i++) const ProductItem(),
-                    ],
+                  child: Obx(
+                    () {
+                      if (controller.isProductLoading.value) {
+                        return const Center(child: CircularProgressIndicator());
+                      }
+                      return Wrap(
+                        alignment: WrapAlignment.spaceBetween,
+                        children: controller.productList
+                            .map((e) => ProductItem(
+                                  product: e,
+                                ))
+                            .toList(),
+                      );
+                    },
                   ),
                 ),
               ),
